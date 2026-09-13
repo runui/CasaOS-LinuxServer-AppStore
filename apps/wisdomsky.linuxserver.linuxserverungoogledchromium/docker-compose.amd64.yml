@@ -1,0 +1,29 @@
+name: linuxserver-ungoogled-chromium
+services:
+  app:
+    image: linuxserver/ungoogled-chromium:152.0.7977@sha256:b0bc25565ac5f0490ab82f4b559d31f8b9adf09f0219c1549f75eb169218bd80
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      CHROME_CLI: ''
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/ungoogled-chromium/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverungoogledchromium/assets/icon.png
+  title:
+    en_US: Ungoogled chromium (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverungoogledchromium
+  version: "152.0.7977"
+  port_map: '3000'

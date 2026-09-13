@@ -1,0 +1,29 @@
+name: linuxserver-chromium
+services:
+  app:
+    image: linuxserver/chromium:version-9fde18d4@sha256:63e8e38540462a38c70ef85497c13c412485b39979394ea95da450fca5b4efa8
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      CHROME_CLI: ''
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/chromium/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverchromium/assets/icon.png
+  title:
+    en_US: Chromium (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverchromium
+  version: "0.0.1"
+  port_map: '3000'

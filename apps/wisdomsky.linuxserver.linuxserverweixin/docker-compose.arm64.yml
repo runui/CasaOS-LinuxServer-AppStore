@@ -1,0 +1,28 @@
+name: linuxserver-weixin
+services:
+  app:
+    image: linuxserver/weixin:version-7cc374df@sha256:c30452597c9bb8685cfb8061c0b683830e4149ed6523add1f2282ff341deeaa3
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/weixin/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverweixin/assets/icon.png
+  title:
+    en_US: Weixin (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverweixin
+  version: "0.0.1"
+  port_map: '3000'

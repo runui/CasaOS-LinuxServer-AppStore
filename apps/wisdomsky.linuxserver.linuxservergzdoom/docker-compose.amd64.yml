@@ -1,0 +1,28 @@
+name: linuxserver-gzdoom
+services:
+  app:
+    image: linuxserver/gzdoom:4.14.2@sha256:3d457e988d79035d00974173187dd7b62dc22d49bbe5b3239398b157e0c45cf7
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/gzdoom/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxservergzdoom/assets/icon.png
+  title:
+    en_US: Gzdoom (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxservergzdoom
+  version: "4.14.2"
+  port_map: '3000'

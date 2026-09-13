@@ -1,0 +1,28 @@
+name: linuxserver-scummvm
+services:
+  app:
+    image: linuxserver/scummvm:2026.3.0@sha256:b973677bd292eff37e7488c8b348c04dbbd20368963678de2d129749936658af
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/scummvm/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverscummvm/assets/icon.png
+  title:
+    en_US: Scummvm (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverscummvm
+  version: "2026.3.0"
+  port_map: '3000'

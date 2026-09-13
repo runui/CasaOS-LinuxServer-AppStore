@@ -1,0 +1,30 @@
+name: linuxserver-kometa
+services:
+  app:
+    image: linuxserver/kometa:2.4.8@sha256:a9ef2c7b56eddb150d27b810155564c9a82728a530bd75283f96d4f9d016b1e1
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      KOMETA_CONFIG: ''
+      KOMETA_TIMES: ''
+      KOMETA_RUN: ''
+      KOMETA_TESTS: ''
+      KOMETA_NO_MISSING: ''
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/kometa/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverkometa/assets/icon.png
+  title:
+    en_US: Kometa (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverkometa
+  version: "2.4.8"
+  port_map: '80'

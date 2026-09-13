@@ -1,0 +1,28 @@
+name: linuxserver-kali-linux
+services:
+  app:
+    image: linuxserver/kali-linux:version-b6cbe11b@sha256:739c94c5fb436ac0cddc75bf72fff9794de7fbcb9a55d99090c3f6104002cc54
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/kali-linux/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverkalilinux/assets/icon.png
+  title:
+    en_US: Kali linux (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverkalilinux
+  version: "0.0.1"
+  port_map: '3000'

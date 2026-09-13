@@ -1,0 +1,28 @@
+name: linuxserver-webcord
+services:
+  app:
+    image: linuxserver/webcord:4.14.0@sha256:4d7c170c73684352f2ea0924b474f3b3b14714e25e174fe4346ec58d0780f45b
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/webcord/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverwebcord/assets/icon.png
+  title:
+    en_US: Webcord (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverwebcord
+  version: "4.14.0"
+  port_map: '3000'

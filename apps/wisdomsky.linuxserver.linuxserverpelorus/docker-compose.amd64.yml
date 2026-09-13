@@ -1,0 +1,25 @@
+name: linuxserver-pelorus
+services:
+  app:
+    image: linuxserver/pelorus:0.2.3@sha256:6731a1811aeb0653ad977ffee38e25a8ec9f2abd70287d70945a79cc205623c2
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/pelorus/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverpelorus/assets/icon.png
+  title:
+    en_US: Pelorus (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverpelorus
+  version: "0.2.3"
+  port_map: '3001'

@@ -1,0 +1,28 @@
+name: linuxserver-libreoffice
+services:
+  app:
+    image: linuxserver/libreoffice:25.8.7@sha256:20abb48108cfb1adbb5b2692264de6cefab7865a580c3d21224b45940e376d84
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/libreoffice/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverlibreoffice/assets/icon.png
+  title:
+    en_US: Libreoffice (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverlibreoffice
+  version: "25.8.7"
+  port_map: '3000'

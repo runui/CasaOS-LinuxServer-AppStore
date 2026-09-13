@@ -1,0 +1,25 @@
+name: linuxserver-freshrss
+services:
+  app:
+    image: linuxserver/freshrss:1.30.0@sha256:a22bf898c2d93bd3d9459177e880af6a40cdfb8b2665e570a28ddde9f74c4b6c
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/freshrss/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverfreshrss/assets/icon.png
+  title:
+    en_US: Freshrss (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverfreshrss
+  version: "1.29.1"
+  port_map: '80'

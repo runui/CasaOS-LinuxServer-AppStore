@@ -1,0 +1,32 @@
+name: linuxserver-duckdns
+services:
+  app:
+    image: linuxserver/duckdns:version-678b96cb@sha256:834e98df4ac61d9598003ea6fc1017eb74ef938bcbfe40daa3c2c01358a03b8c
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      SUBDOMAINS: ''
+      TOKEN: ''
+      UPDATE_IP: ''
+      LOG_FILE: ''
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/duckdns/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/duckdns/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverduckdns/assets/icon.png
+  title:
+    en_US: Duckdns (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverduckdns
+  version: "0.0.1"
+  port_map: '80'

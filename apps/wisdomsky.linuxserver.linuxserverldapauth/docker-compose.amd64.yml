@@ -1,0 +1,30 @@
+name: linuxserver-ldap-auth
+services:
+  app:
+    image: linuxserver/ldap-auth:3.4.7@sha256:bf2d7f84db11133662b859d742ff05f3a452ac9b65a12b934f362a9351c9241d
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      FERNETKEY: ''
+      CERTFILE: ''
+      KEYFILE: ''
+    ports:
+      - target: 8888
+        published: 8888
+        protocol: tcp
+      - target: 9000
+        published: 9000
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/ldap-auth/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverldapauth/assets/icon.png
+  title:
+    en_US: Ldap auth (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverldapauth
+  version: "3.4.7"

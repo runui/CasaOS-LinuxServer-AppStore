@@ -1,0 +1,31 @@
+name: linuxserver-radarr
+services:
+  app:
+    image: linuxserver/radarr:6.3.0@sha256:982aaf6321112e51cc2ddb1772b1a9d30cd27f48c7b1b41e3ee112d920c121be
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 7878
+        published: 7878
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/radarr/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/radarr/movies
+        target: /movies
+      - type: bind
+        source: /DATA/AppData/radarr/downloads
+        target: /downloads
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverradarr/assets/icon.png
+  title:
+    en_US: Radarr (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverradarr
+  version: "6.3.0"
+  port_map: '7878'

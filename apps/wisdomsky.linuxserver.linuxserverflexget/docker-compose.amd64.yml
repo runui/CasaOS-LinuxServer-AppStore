@@ -1,0 +1,32 @@
+name: linuxserver-flexget
+services:
+  app:
+    image: linuxserver/flexget:3.20.13@sha256:0c0ca38daf1cb4e409e755d9d87e24e0a5ba5bc46bea5946aaa825b6d59f483f
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      FG_LOG_LEVEL: ''
+      FG_LOG_FILE: ''
+      FG_CONFIG_FILE: ''
+      FG_WEBUI_PASSWORD: ''
+    ports:
+      - target: 5050
+        published: 5050
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/flexget/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/flexget/data
+        target: /data
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverflexget/assets/icon.png
+  title:
+    en_US: Flexget (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverflexget
+  version: "3.20.10"
+  port_map: '5050'

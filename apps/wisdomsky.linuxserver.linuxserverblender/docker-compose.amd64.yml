@@ -1,0 +1,28 @@
+name: linuxserver-blender
+services:
+  app:
+    image: linuxserver/blender:5.2.1@sha256:ab34fa7f022bf73ecb6d60df4464c06d3b9948ce8638c70462954195b9632968
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/blender/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverblender/assets/icon.png
+  title:
+    en_US: Blender (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverblender
+  version: "5.2.1"
+  port_map: '3000'

@@ -1,0 +1,23 @@
+name: linuxserver-synclounge
+services:
+  app:
+    image: linuxserver/synclounge:5.2.35@sha256:967f98034f06a91c6c74a5d4f813286bab612b74de634ece8e43aab9c4d09594
+    restart: unless-stopped
+    environment:
+      AUTH_LIST: ''
+    ports:
+      - target: 8088
+        published: 8088
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/synclounge/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserversynclounge/assets/icon.png
+  title:
+    en_US: Synclounge (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserversynclounge
+  version: "5.2.35"
+  port_map: '8088'

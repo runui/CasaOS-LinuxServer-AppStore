@@ -1,0 +1,28 @@
+name: linuxserver-rawtherapee
+services:
+  app:
+    image: linuxserver/rawtherapee:5.13.20260906@sha256:611e644e209bf17ba61bd29ee0825a58e69a01191af803d82822aa9b127277d6
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/rawtherapee/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverrawtherapee/assets/icon.png
+  title:
+    en_US: Rawtherapee (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverrawtherapee
+  version: "5.13.20260906"
+  port_map: '3000'

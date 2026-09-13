@@ -1,0 +1,29 @@
+name: linuxserver-apprise-api
+services:
+  app:
+    image: linuxserver/apprise-api:1.5.4@sha256:4043adf03435573d862591366711a8c8e6bbb405f96cc8b90b5dd0c1ad6f3f6f
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+      APPRISE_ATTACH_SIZE: ''
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/apprise-api/config
+        target: /config
+      - type: bind
+        source: /DATA/AppData/apprise-api/attachments
+        target: /attachments
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxserverappriseapi/assets/icon.png
+  title:
+    en_US: Apprise api (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxserverappriseapi
+  version: "1.5.4"
+  port_map: '8000'

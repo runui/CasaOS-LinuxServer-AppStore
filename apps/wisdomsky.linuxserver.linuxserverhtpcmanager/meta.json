@@ -1,0 +1,24 @@
+{
+  "architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "description": "Htpcmanager is a front end for many htpc related applications.",
+  "tagline": "A front end for many htpc related applications.",
+  "developer": "LinuxServer.io",
+  "author": "WisdomSky",
+  "thumbnail": "/apps/wisdomsky.linuxserver.linuxserverhtpcmanager/assets/htpcmanager-icon.webp",
+  "category": "Home",
+  "title": "Htpcmanager (LinuxServer.io)",
+  "base_url": "https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages",
+  "id": "wisdomsky.linuxserver.linuxserverhtpcmanager",
+  "version": "0.0.1",
+  "categories": [
+    "home"
+  ],
+  "min_memory": 0,
+  "min_image_size": {
+    "amd64": 71341359,
+    "arm64": 71666700
+  }
+}

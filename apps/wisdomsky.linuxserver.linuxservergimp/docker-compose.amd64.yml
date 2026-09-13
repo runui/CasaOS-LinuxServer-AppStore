@@ -1,0 +1,28 @@
+name: linuxserver-gimp
+services:
+  app:
+    image: linuxserver/gimp:version-53539a3c@sha256:a08600623395dc3d5c3794fc21ead51505536a15670b8c618472ce7093259ec2
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/gimp/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxservergimp/assets/icon.png
+  title:
+    en_US: Gimp (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxservergimp
+  version: "0.0.1"
+  port_map: '3000'

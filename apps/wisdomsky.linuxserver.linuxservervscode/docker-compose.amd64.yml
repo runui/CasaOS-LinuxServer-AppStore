@@ -1,0 +1,28 @@
+name: linuxserver-vscode
+services:
+  app:
+    image: linuxserver/vscode:1.136.2@sha256:45e6f55e6faeb44e3e3dd55ccca614fcf0ef36e8717a499afe31124843dee187
+    restart: unless-stopped
+    environment:
+      PUID: $PUID
+      PGID: $PGID
+      TZ: $TZ
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+      - target: 3001
+        published: 3001
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/vscode/config
+        target: /config
+x-casaos:
+  main: app
+  icon: https://cdn.jsdelivr.net/gh/runui/CasaOS-LinuxServer-AppStore@gh-pages/apps/wisdomsky.linuxserver.linuxservervscode/assets/icon.png
+  title:
+    en_US: Vscode (LinuxServer.io)
+  id: wisdomsky.linuxserver.linuxservervscode
+  version: "1.135.0"
+  port_map: '3000'
